@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>// Global constants
 global.squareSize = 64;
+global.offset = 32;
 
 // Execute the script to make a grid
 tileMap = scpt_generateGrid(room_width, room_height);
@@ -38,7 +39,7 @@ curObj = undefined;
 hoverObj = undefined;
 
 //Create player for test
-global.party[0] = instance_create(3*global.squareSize, 3*global.squareSize, obj_pmember);
+global.party[0] = instance_create(3*global.squareSize + global.offset, 3*global.squareSize + global.offset, obj_pmember);
 tileMap[3,3].occupied = true;
 tileMap[3,3].pmember = global.party[0];
 

@@ -15,7 +15,7 @@ maxY = floor(height / global.squareSize);
 // Create each tile
 maxReached = false;
 while(!maxReached){
-    obj_temp = instance_create(currentX * global.squareSize, currentY * global.squareSize, obj_square);
+    obj_temp = instance_create(currentX * global.squareSize + global.offset, currentY * global.squareSize + global.offset, obj_square);
     
     tileArr[currentX, currentY] = obj_temp.id;
     obj_temp.xPos = currentX;
