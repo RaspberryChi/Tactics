@@ -25,13 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.squareSize = 64;
+            <string>// Global constants
+global.squareSize = 64;
 
 // Execute the script to make a grid
-global.tileMap = scpt_generateGrid(room_width, room_height);
+tileMap = scpt_generateGrid(room_width, room_height);
 
-curObj = global.tileMap[0,0];
-hoverObj = global.tileMap[0,0];
+//curObj = global.tileMap[0,0];
+//hoverObj = global.tileMap[0,0];
+
+curObj = undefined;
+hoverObj = undefined;
+
+//Create player for test
+global.party[0] = instance_create(3*global.squareSize, 3*global.squareSize, obj_pmember);
+tileMap[3,3].occupied = true;
+tileMap[3,3].pmember = global.party[0];
+
+global.party[0].name = "Mark";
+global.party[0].posX = 3;
+global.party[0].posY = 3;
 </string>
           </argument>
         </arguments>
@@ -59,7 +72,7 @@ hoverObj = global.tileMap[0,0];
 mouseX = floor(mouse_x / global.squareSize);
 mouseY = floor(mouse_y / global.squareSize);
 
-tempObj = global.tileMap[mouseX, mouseY];
+tempObj = tileMap[mouseX, mouseY];
 if(tempObj != hoverObj){
     if(hoverObj != curObj){
         hoverObj.image_index = 0;
@@ -101,7 +114,12 @@ obj_temp.hover = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(0, 0, string(curObj.xPos) + ", " + string(curObj.yPos));
+            <string>if(curObj != undefined){
+    draw_text(0, 0, string(curObj.xPos) + ", " + string(curObj.yPos));
+    if(curObj.pmember != undefined){
+        draw_text(0, 20, "Name: " + curObj.pmember.name);
+    }
+}
 </string>
           </argument>
         </arguments>
