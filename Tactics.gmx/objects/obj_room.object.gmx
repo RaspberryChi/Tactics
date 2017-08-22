@@ -78,9 +78,15 @@ if(tempObj != hoverObj){
     if(hoverObj != curObj){
         hoverObj.image_index = 0;
     }
+    if(hoverObj != undefined &amp;&amp; hoverObj.pmember != undefined){
+        hoverObj.pmember.hover = false;
+    }
     
     hoverObj = tempObj;
     
+    if(hoverObj.pmember != undefined){
+        hoverObj.pmember.hover = true;
+    }
     if(tempObj != curObj){
         hoverObj.image_index = 2;
     }
@@ -88,7 +94,13 @@ if(tempObj != hoverObj){
 
 if(mouse_check_button_released(mb_left) &amp;&amp; tempObj != curObj){
     curObj.image_index = 0;
+    if(curObj != undefined &amp;&amp; curObj.pmember != undefined){
+        curObj.pmember.selected = false;
+    }
     curObj = tempObj;
+    if(curObj.pmember != undefined){
+        curObj.pmember.selected = true;
+    }
     curObj.image_index = 1;
 }
 

@@ -8,6 +8,8 @@
   <sprites name="sprites">
     <sprite>sprites\spr_square</sprite>
     <sprite>sprites\spr_warrior</sprite>
+    <sprite>sprites\spr_squareMove</sprite>
+    <sprite>sprites\spr_squareAttack</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_field</background>
@@ -15,6 +17,11 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scpt_generateGrid.gml</script>
+    <script>scripts\scpt_drawMelee.gml</script>
+    <script>scripts\scpt_drawMove.gml</script>
+    <script>scripts\scpt_convertToCoords.gml</script>
+    <script>scripts\scpt_convertFromCoords.gml</script>
+    <script>scripts\scpt_drawCircle.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_pmember</object>

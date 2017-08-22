@@ -1,0 +1,4 @@
+JOB, NAME, MOVE, MELEE, RANGED-S, RANGED-E, ABIL1, ABIL2
+WAR, "Warrior", 2, 1, -1, -1, TAUNT, RAGE
+MAG, "Mage", 1.5, 1, 1, 2.5, DARK, LIGHT
+MAR, "Martial Artist", 3, 1, 2.5, 4, RANGE, CHANNEL
