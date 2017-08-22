@@ -16,7 +16,6 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scpt_generateGrid.gml</script>
-    <script>scripts\scpt_getTile.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_pmember</object>

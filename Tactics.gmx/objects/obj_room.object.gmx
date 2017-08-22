@@ -76,7 +76,6 @@ if(mouse_check_button_released(mb_left) &amp;&amp; tempObj != curObj){
     curObj.image_index = 0;
     curObj = tempObj;
     curObj.image_index = 1;
-    show_debug_message(curObj.xPos);
 }
 
 obj_temp.hover = true;
