@@ -14,8 +14,14 @@
     <background>background\bg_field</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scpt_generateGrid.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_pmember</object>
+    <object>objects\obj_square</object>
+    <object>objects\obj_generator</object>
+    <object>objects\obj_room</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_field</room>
