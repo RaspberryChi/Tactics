@@ -7,17 +7,19 @@ height = argument1;
 maxTile = width * height;
 
 currentX = 0;
-maxX = floor(width / squareSize);
+maxX = floor(width / global.squareSize);
 
 currentY = 0;
-maxY = floor(height / squareSize);
+maxY = floor(height / global.squareSize);
 
 // Create each tile
 maxReached = false;
 while(!maxReached){
-    obj_temp = instance_create(currentX * squareSize, currentY * squareSize, obj_square);
+    obj_temp = instance_create(currentX * global.squareSize, currentY * global.squareSize, obj_square);
     
     tileArr[currentX, currentY] = obj_temp.id;
+    obj_temp.xPos = currentX;
+    obj_temp.yPos = currentY;
     
     currentX += 1;
     if(currentX > maxX){

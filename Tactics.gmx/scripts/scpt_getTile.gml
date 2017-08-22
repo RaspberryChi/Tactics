@@ -3,4 +3,4 @@ var xPos, yPos;
 xPos = argument0;
 yPos = argument1;
 
-instance_find(obj_square, tileMap[xPos, yPos]);
+instance_find(obj_square, global.tileMap[xPos, yPos]);
