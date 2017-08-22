@@ -1,26 +1,23 @@
-// scpt_generateGrid(width, height, square_width, square_height)
-var width, height, square_object;
+// scpt_generateGrid(width, height)
+var width, height, size, tileArr;
 width = argument0;
 height = argument1;
-square_width = argument2;
-square_height = argument3;
 
 // Set up positions
 maxTile = width * height;
 
 currentX = 0;
-maxX = floor(width / square_width);
+maxX = floor(width / squareSize);
 
 currentY = 0;
-maxY = floor(height / square_height);
+maxY = floor(height / squareSize);
 
 // Create each tile
 maxReached = false;
 while(!maxReached){
-    obj_temp = instance_create(currentX * square_width, currentY * square_height, obj_square);
+    obj_temp = instance_create(currentX * squareSize, currentY * squareSize, obj_square);
     
-    obj_temp.xPos = currentX;
-    obj_temp.yPos = currentY;
+    tileArr[currentX, currentY] = obj_temp.id;
     
     currentX += 1;
     if(currentX > maxX){
@@ -32,3 +29,5 @@ while(!maxReached){
         maxReached = true;
     }
 }
+
+return tileArr;
