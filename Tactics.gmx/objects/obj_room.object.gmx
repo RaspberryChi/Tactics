@@ -118,16 +118,16 @@ if(keyboard_check_pressed(vk_escape)){
 
 // Move camera
 if(keyboard_check(ord('W')) || keyboard_check(ord('w'))){
-    
+    vspeed = 0.5;
 }
 if(keyboard_check(ord('A')) || keyboard_check(ord('a'))){
-    
+    hspeed = -0.5;
 }
 if(keyboard_check(ord('S')) || keyboard_check(ord('s'))){
-    
+    vspeed = -0.5;
 }
 if(keyboard_check(ord('D')) || keyboard_check(ord('D'))){
-    
+    hspeed = 0.5;
 }
 </string>
           </argument>
