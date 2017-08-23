@@ -70,10 +70,12 @@ global.party[0].posY = 3;
             <kind>1</kind>
             <string>var mouseX, mouseY, tempObj;
 
+// Track mouse and get object it's over
 mouseX = floor(mouse_x / global.squareSize);
 mouseY = floor(mouse_y / global.squareSize);
-
 tempObj = tileMap[mouseX, mouseY];
+
+// Set hovered over square
 if(tempObj != hoverObj){
     if(hoverObj != curObj){
         hoverObj.image_index = 0;
@@ -92,6 +94,7 @@ if(tempObj != hoverObj){
     }
 }
 
+// Set selected square
 if(mouse_check_button_released(mb_left) &amp;&amp; tempObj != curObj){
     curObj.image_index = 0;
     if(curObj != undefined &amp;&amp; curObj.pmember != undefined){
@@ -104,7 +107,28 @@ if(mouse_check_button_released(mb_left) &amp;&amp; tempObj != curObj){
     curObj.image_index = 1;
 }
 
-obj_temp.hover = true;
+// Remove selected square
+if(keyboard_check_pressed(vk_escape)){
+    if(curObj != undefined &amp;&amp; curObj.pmember != undefined){
+        curObj.pmember.selected = false;
+    }
+    curObj.image_index = 0;
+    curObj = undefined;
+}
+
+// Move camera
+if(keyboard_check(ord('W')) || keyboard_check(ord('w'))){
+    
+}
+if(keyboard_check(ord('A')) || keyboard_check(ord('a'))){
+    
+}
+if(keyboard_check(ord('S')) || keyboard_check(ord('s'))){
+    
+}
+if(keyboard_check(ord('D')) || keyboard_check(ord('D'))){
+    
+}
 </string>
           </argument>
         </arguments>
@@ -128,23 +152,28 @@ obj_temp.hover = true;
           <argument>
             <kind>1</kind>
             <string>if(curObj != undefined){
-    draw_set_circle_precision(32);
-    draw_set_colour(make_color_rgb(121, 214, 248));
     draw_set_alpha(1);
-    draw_roundrect_colour(10, 10, 200, 200, make_color_rgb(121, 214, 248), make_color_rgb(0, 113, 115), false);
     
+    // Top left text box
+    draw_set_circle_precision(32);
+    draw_roundrect_colour(10, 10, 175, 125, make_color_rgb(121, 214, 248), make_color_rgb(121, 214, 248), false);
+    draw_roundrect_colour(10, 10, 175, 125, 0, make_color_rgb(0, 113, 115), true);
+    draw_roundrect_colour(11, 11, 174, 124, 0, make_color_rgb(0, 113, 115), true);
+    draw_roundrect_colour(12, 12, 173, 123, 0, make_color_rgb(0, 113, 115), true);
+    
+    // Write to top left text box
     draw_set_colour(c_black);
-    
-    draw_text(15, 15, string(curObj.xPos) + ", " + string(curObj.yPos));
+    draw_text(15, 15, "Position: " + string(curObj.xPos) + ", " + string(curObj.yPos));
     if(curObj.pmember != undefined){
         draw_text(15, 35, "Name: " + curObj.pmember.name);
+        draw_text(15, 55, "Job: " + curObj.pmember.job);
     }
 }
 
 if(hoverObj != undefined){
-    draw_text(room_width - 150, 0, string(hoverObj.xPos) + ", " + string(hoverObj.yPos));
+    draw_text(room_width - 125, 15, string(hoverObj.xPos) + ", " + string(hoverObj.yPos));
     if(hoverObj.pmember != undefined){
-        draw_text(room_width - 150, 20, "Name: " + hoverObj.pmember.name);
+        draw_text(room_width - 125, 35, "Name: " + hoverObj.pmember.name);
     }
 }
 </string>
