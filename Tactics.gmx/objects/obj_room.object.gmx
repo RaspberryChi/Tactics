@@ -25,27 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Global constants
-global.squareSize = 64;
-global.offset = 32;
+            <string>// Reset global variables
+global.curObj = undefined;
+global.hoverObj = undefined;
 
 // Execute the script to make a grid
-tileMap = scpt_generateGrid(room_width, room_height);
+global.tileMap = scpt_generateGrid(room_width, room_height);
 
-//curObj = global.tileMap[0,0];
-//hoverObj = global.tileMap[0,0];
-
-curObj = undefined;
-hoverObj = undefined;
-
-//Create player for test
-global.party[0] = instance_create(3*global.squareSize + global.offset, 3*global.squareSize + global.offset, obj_pmember);
-tileMap[3,3].occupied = true;
-tileMap[3,3].pmember = global.party[0];
-
-global.party[0].name = "Mark";
-global.party[0].posX = 3;
-global.party[0].posY = 3;
+// Create player for test
+global.tileMap[3,3].occupied = true;
+global.tileMap[3,3].entity = global.party[0];
 </string>
           </argument>
         </arguments>
@@ -73,47 +62,52 @@ global.party[0].posY = 3;
 // Track mouse and get object it's over
 mouseX = floor(mouse_x / global.squareSize);
 mouseY = floor(mouse_y / global.squareSize);
-tempObj = tileMap[mouseX, mouseY];
+tempObj = global.tileMap[mouseX, mouseY];
 
 // Set hovered over square
-if(tempObj != hoverObj){
-    if(hoverObj != curObj){
-        hoverObj.image_index = 0;
+if(tempObj != global.hoverObj){
+    if(global.hoverObj != global.curObj){
+        global.hoverObj.image_index = 0;
     }
-    if(hoverObj != undefined &amp;&amp; hoverObj.pmember != undefined){
-        hoverObj.pmember.hover = false;
+    if(global.hoverObj != undefined &amp;&amp; global.hoverObj.entity != undefined){
+        global.hoverObj.entity.hover = false;
     }
     
-    hoverObj = tempObj;
+    global.hoverObj = tempObj;
     
-    if(hoverObj.pmember != undefined){
-        hoverObj.pmember.hover = true;
+    if(global.hoverObj.entity != undefined){
+        global.hoverObj.entity.hover = true;
     }
-    if(tempObj != curObj){
-        hoverObj.image_index = 2;
+    if(tempObj != global.curObj){
+        global.hoverObj.image_index = 2;
     }
 }
 
 // Set selected square
-if(mouse_check_button_released(mb_left) &amp;&amp; tempObj != curObj){
-    curObj.image_index = 0;
-    if(curObj != undefined &amp;&amp; curObj.pmember != undefined){
-        curObj.pmember.selected = false;
+if(mouse_check_button_released(mb_left) &amp;&amp; tempObj != global.curObj){
+
+    if(global.curObj != undefined){
+        global.curObj.image_index = 0;
     }
-    curObj = tempObj;
-    if(curObj.pmember != undefined){
-        curObj.pmember.selected = true;
+    
+    if(global.curObj != undefined &amp;&amp; global.curObj.entity != undefined){
+        global.curObj.entity.selected = false;
     }
-    curObj.image_index = 1;
+    
+    global.curObj = tempObj;
+    if(global.curObj.entity != undefined){
+        global.curObj.entity.selected = true;
+    }
+    global.curObj.image_index = 1;
 }
 
 // Remove selected square
 if(keyboard_check_pressed(vk_escape)){
-    if(curObj != undefined &amp;&amp; curObj.pmember != undefined){
-        curObj.pmember.selected = false;
+    if(global.curObj != undefined &amp;&amp; global.curObj.entity != undefined){
+        global.curObj.entity.selected = false;
     }
-    curObj.image_index = 0;
-    curObj = undefined;
+    global.curObj.image_index = 0;
+    global.curObj = undefined;
 }
 
 // Move camera
@@ -128,53 +122,6 @@ if(keyboard_check(ord('S')) || keyboard_check(ord('s'))){
 }
 if(keyboard_check(ord('D')) || keyboard_check(ord('D'))){
     hspeed = 0.5;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(curObj != undefined){
-    draw_set_alpha(1);
-    
-    // Top left text box
-    draw_set_circle_precision(32);
-    draw_roundrect_colour(10, 10, 175, 125, make_color_rgb(121, 214, 248), make_color_rgb(121, 214, 248), false);
-    draw_roundrect_colour(10, 10, 175, 125, 0, make_color_rgb(0, 113, 115), true);
-    draw_roundrect_colour(11, 11, 174, 124, 0, make_color_rgb(0, 113, 115), true);
-    draw_roundrect_colour(12, 12, 173, 123, 0, make_color_rgb(0, 113, 115), true);
-    
-    // Write to top left text box
-    draw_set_colour(c_black);
-    draw_text(15, 15, "Position: " + string(curObj.xPos) + ", " + string(curObj.yPos));
-    if(curObj.pmember != undefined){
-        draw_text(15, 35, "Name: " + curObj.pmember.name);
-        draw_text(15, 55, "Job: " + curObj.pmember.job);
-    }
-}
-
-if(hoverObj != undefined){
-    draw_text(room_width - 125, 15, string(hoverObj.xPos) + ", " + string(hoverObj.yPos));
-    if(hoverObj.pmember != undefined){
-        draw_text(room_width - 125, 35, "Name: " + hoverObj.pmember.name);
-    }
 }
 </string>
           </argument>

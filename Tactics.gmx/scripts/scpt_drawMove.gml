@@ -1,8 +1,8 @@
-// scpt_drawMelee()
-var minX, maxX, minY, maxY;
-minX = posX - move;
-maxX = posX + move;
-minY = posY - move;
-maxY = posY + move;
+// scpt_drawMelee(entity)
+var entity = argument0;
+var minX = entity.posX - entity.move;
+var maxX = entity.posX + entity.move;
+var minY = entity.posY - entity.move;
+var maxY = entity.posY + entity.move;
 
-scpt_drawCircle(posX, minX, maxX, posY, minY, maxY, move, spr_squareMove);
+scpt_drawCircle(entity.posX, minX, maxX, entity.posY, minY, maxY, entity.move, spr_squareMove);

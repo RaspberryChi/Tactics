@@ -1,8 +1,8 @@
-// scpt_drawMelee()
-var minX, maxX, minY, maxY;
-minX = posX - melee;
-maxX = posX + melee;
-minY = posY - melee;
-maxY = posY + melee;
+// scpt_drawMelee(entity)
+var entity = argument0;
+var minX = entity.posX - entity.melee;
+var maxX = entity.posX + entity.melee;
+var minY = entity.posY - entity.melee;
+var maxY = entity.posY + entity.melee;
 
-scpt_drawCircle(posX, minX, maxX, posY, minY, maxY, melee, spr_squareAttack);
+scpt_drawCircle(entity.posX, minX, maxX, entity.posY, minY, maxY, entity.melee, spr_squareAttack);

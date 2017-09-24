@@ -28,7 +28,7 @@
             <string>xPos = 0;
 yPos = 0;
 occupied = false;
-pmember = undefined;
+entity = undefined;
 
 image_speed = 0;
 </string>
